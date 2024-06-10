@@ -1,4 +1,4 @@
-use legion::*;
+use legion::{serialize::*, *};
 use serde::{de::DeserializeSeed, Deserialize, Serialize};
 
 #[derive(Default, Copy, Clone, Serialize, Deserialize)]
@@ -52,7 +52,8 @@ impl Benchmark {
 
     pub fn run(&mut self) {
         let Self(world, registry) = self;
-        let serializable = &world.as_serializable(any(), &*registry);
+        let entity_serializer = Canon::default();
+        let serializable = &world.as_serializable(any(), &*registry, &entity_serializer);
 
         let encoded = bincode::serialize(serializable).unwrap();
 
@@ -65,7 +66,7 @@ impl Benchmark {
         );
 
         registry
-            .as_deserialize()
+            .as_deserialize(&entity_serializer)
             .deserialize(&mut deserializer)
             .unwrap();
     }

@@ -7,23 +7,23 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-bevy_ecs = "0.5.0"
-bevy_tasks = "0.5.0"
-bincode = "1.3"
-cgmath = { version = "0.17", features = ["serde"] }
-hecs = { version = "0.5", features = ["column-serialize", "row-serialize"] }
-legion = "0.3"
+bevy_ecs = { version = "0.13.2", features = ["multi-threaded"] }
+bevy_tasks = "0.13.2"
+bincode = "1.3.3"
+cgmath = { version = "0.18", features = ["serde"] }
+hecs = { version = "0.10.5", features = ["column-serialize", "row-serialize"] }
+legion = "0.4.0"
 planck_ecs = { version = "1.1.0", features = ["parallel"] }
-rayon = "1.3"
-ron = "0.6"
+rayon = "1.10.0"
+ron = "0.8.1"
 serde = { version = "1.0", features = ["derive"] }
-shipyard = "0.5.0"
-specs = {version = "0.16.1", features = ["serde"] }
+shipyard = "0.6.2"
+specs = {version = "0.20.0", features = ["serde"] }
 specs-derive = "0.4.1"
 
 [dev-dependencies]
-criterion = "0.3"
-rayon = "1.3"
+criterion = "0.5.1"
+rayon = "1.10.0"
 
 [[bench]]
 name = "benchmarks"
